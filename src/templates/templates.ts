@@ -3,11 +3,11 @@ export const data = {
   languages: {
     JavascriptCss: {
       files: [".js", ".css"],
-      import: 'import "./{0}.css"',
+      import: 'import "./{0}.css";',
     },
     TypescriptCss: {
       files: [".ts", ".css"],
-      import: 'import "./{0}.css"',
+      import: 'import "./{0}.css";',
     },
     Cpp:{
       files: [".cpp",".h"],
