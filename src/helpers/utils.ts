@@ -25,7 +25,6 @@ if (!String.prototype.format) {
 }
 
 export function startSelections(path : string | undefined = undefined) {
-  console.log(path);
   createWorkspacePicker(path);
 }
 
