@@ -1,7 +1,9 @@
 {
   "name": "filesnippets",
   "displayName": "FileSnippets",
-  "description": "",
+  "description": "Create main and include files in one command.",
+  "publisher": "client",
+  "icon": "media/images/icon.png",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.63.0"
