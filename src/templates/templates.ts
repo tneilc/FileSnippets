@@ -2,11 +2,11 @@ export const data = {
   languages: {
     javascriptreact: {
       files: [".js", ".css"],
-      import: 'import "./{}"',
+      import: 'import "./{0}"',
     },
     typescriptreact: {
       files: [".ts", ".css"],
-      import: 'import "./{}"',
+      import: 'import "./{0}"',
     },
   },
 };
