@@ -4,8 +4,10 @@
   "description": "Create main and include files in one command.",
   "publisher": "client",
   "icon": "media/images/icon.png",
-  "repository": {"url": "https://github.com/tneilc/FileSnippets.git"},
-  "version": "0.0.1",
+  "repository": {
+    "url": "https://github.com/tneilc/FileSnippets.git"
+  },
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.63.0"
   },
