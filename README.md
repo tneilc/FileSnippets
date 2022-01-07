@@ -2,8 +2,10 @@
 
 FileSnippets is an extension which helps you create both main and import files.
 
-## Features
 
+## Features
+---
+### Create Files:
 Easily create both main and import file for :
 * CPP-H
 * JS - CSS
@@ -12,8 +14,17 @@ Easily create both main and import file for :
 
 You can use command palette(Ctrl + Shift + P) to create files in project root folder or you can right click on a folder and select "Create Files" to create files in that folder.
 
-![Showcase](media/gifs/showcase.gif)
+![Showcase](media/gifs/file-create.gif)
+---
+### Create Project:
+Create project with templates for :
+* Cpp Makefile
+* C Makefile
+* Cs Console App
+* Node.js Javascript
 
+You dont need to do anything manual anymore. Open command palette, select Create Project , select the folder you want the project to be in, watch what happens.
+![Showcase](media/gifs/project-create.gif)
 ## Known Issues
 
 * Lack of templates.
@@ -26,4 +37,10 @@ Users appreciate release notes as you update your extension.
 
 Initial release of FileSnippets
 
+### 0.0.2
 
+Minor bugfix
+
+### 0.0.3
+
+Added support for creating projects.
