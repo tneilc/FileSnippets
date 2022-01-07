@@ -8,50 +8,18 @@ import {
   WorkspaceEdit,
 } from "vscode";
 import { data } from "../templates/templates";
+import { quickPick } from "./utils_global";
 
-declare global {
-  interface String {
-    format(...replacements: string[]): string;
-  }
-}
-
-if (!String.prototype.format) {
-  String.prototype.format = function () {
-    var args = arguments;
-    return this.replace(/{(\d+)}/g, function (match, number) {
-      return typeof args[number] !== "undefined" ? args[number] : match;
-    });
-  };
-}
-
-export function startSelections(path : string | undefined = undefined) {
+export function startSelections(path: string | undefined = undefined) {
   createWorkspacePicker(path);
 }
 
-function quickPick(
-  items: QuickPickItem[],
-  onChangeSelection = (e: readonly QuickPickItem[]) => {
-    e;
-  },
-  title: string | undefined = undefined
-) {
-  const quickPick = window.createQuickPick();
-  quickPick.items = items;
-  quickPick.title = title;
-  quickPick.onDidChangeSelection((e) => {
-    onChangeSelection(e);
-    quickPick.hide();
-  });
-  quickPick.onDidHide(() => quickPick.dispose());
-  return quickPick;
-}
-
-function createWorkspacePicker(path : string | undefined = undefined) {
-  if(path !== undefined){
+function createWorkspacePicker(path: string | undefined = undefined) {
+  if (path !== undefined) {
     createLanguagePicker(path);
     return;
   }
-  
+
   let ws = workspace.workspaceFolders;
   if (!ws) {
     return;
@@ -60,7 +28,7 @@ function createWorkspacePicker(path : string | undefined = undefined) {
     createLanguagePicker(ws[0].uri.fsPath);
     return;
   }
-  let wsPaths: QuickPickItem[] = ws.map((obj) => ({
+  let wsPaths: QuickPickItemRedesigned[] = ws.map((obj) => ({
     label: obj.uri.fsPath,
   }));
   let workspacePicker = quickPick(wsPaths, (e) => {
@@ -70,11 +38,13 @@ function createWorkspacePicker(path : string | undefined = undefined) {
 }
 
 function createLanguagePicker(path: string) {
-  const languageNames: QuickPickItem[] = Object.keys(data.languages).map(
-    (key) => ({ label: key })
+  const languages: QuickPickItemRedesigned[] = Object.keys(data.languages).map(
+    (language) => {
+      return ({ label: data.languages[language as keyof typeof data.languages].name, value: language });
+    }
   );
-  let languagePicker = quickPick(languageNames, (e) => {
-    createNamePicker(path, e[0].label as keyof typeof data.languages);
+  let languagePicker = quickPick(languages, (e) => {
+    createNamePicker(path, e[0].value as keyof typeof data.languages);
   });
   languagePicker.show();
 }
