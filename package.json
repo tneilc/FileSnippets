@@ -7,7 +7,7 @@
   "repository": {
     "url": "https://github.com/tneilc/FileSnippets.git"
   },
-  "version": "0.0.2",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.63.0"
   },
