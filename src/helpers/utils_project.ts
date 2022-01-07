@@ -2,6 +2,7 @@ import { Console } from "console";
 import path = require("path");
 import {
   commands,
+  FileSystemError,
   OpenDialogOptions,
   Position,
   Uri,
@@ -48,24 +49,32 @@ function initializeProject(
   projectType: keyof typeof data.projectTypes
 ) {
   commands.executeCommand("vscode.openFolder", Uri.file(projectPath));
+
   const wsedit = new WorkspaceEdit();
-  data.projectTypes[projectType].dirs.map((x) => {
+
+  // Execute command if needed
+  if (data.projectTypes[projectType].command !== undefined) {
+    const terminal = window.createTerminal("File Snippets");
+    terminal.sendText(data.projectTypes[projectType].command as string);
+    terminal.show();
+  }
+
+  // Create dirs if needed
+  data.projectTypes[projectType].dirs?.map((x) => {
     if (!existsSync(projectPath + x)) {
       mkdirSync(projectPath + x);
     }
   });
 
-  Object.keys(data.projectTypes[projectType].files).map((key) => {
-    const files = data.projectTypes[projectType].files;
-    Object.keys(data.projectTypes[projectType].files).map((key) => {
-      const file =
-        data.projectTypes[projectType].files[key as keyof typeof files];
-      const filePath = Uri.file(projectPath + file.path + file.name);
-      wsedit.createFile(filePath, { ignoreIfExists: true });
-      if (file.contents) {
-        writeFileSync(filePath.fsPath, file.contents);
-      }
-    });
+
+  const files = data.projectTypes[projectType].files;
+
+  files?.map((file) => {
+    const filePath = Uri.file(projectPath + file.path + file.name);
+    wsedit.createFile(filePath, { ignoreIfExists: true });
+    if (file.contents) {
+      writeFileSync(filePath.fsPath, file.contents);
+    }
   });
 
   workspace.applyEdit(wsedit);

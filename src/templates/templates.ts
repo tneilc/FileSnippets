@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+
 export const data = {
   languages: {
     JavascriptCss: {
@@ -30,36 +31,58 @@ export const data = {
   },
   projectTypes: {
     Cpp: {
-      dirs:["/src/","/include/"],
-      files:{
-        main:{
-          name:"main.cpp",
-          path:"/",
-          contents:"int main(int argc, char *argv[])\n{\n \n}"
+      command: undefined,
+      dirs: ["/src/", "/include/"],
+      files: [
+        {
+          name: "main.cpp",
+          path: "/",
+          contents: "int main(int argc, char *argv[])\n{\n \n}",
         },
-        makefile:{
-          name:"makefile",
-          path:"/",
-          contents:"files := $(wildcard src/*.cpp) main.cpp \noutput : $(files)\n\tg++ -o output $(files)"
-        }
-      },
-      name:"Cpp Make Project"
+        {
+          name: "makefile",
+          path: "/",
+          contents:
+            "files := $(wildcard src/*.cpp) main.cpp \noutput : $(files)\n\tg++ -o output $(files)",
+        },
+      ],
+      name: "Cpp Make Project",
     },
     C: {
-      dirs:["/src/","/include/"],
-      files:{
-        main:{
-          name:"main.c",
-          path:"/",
-          contents:"int main(int argc, char *argv[])\n{\n \n}"
+      command: undefined,
+      dirs: ["/src/", "/include/"],
+      files: [
+        {
+          name: "main.c",
+          path: "/",
+          contents: "int main(int argc, char *argv[])\n{\n \n}",
         },
-        makefile:{
-          name:"makefile",
-          path:"/",
-          contents:"files := $(wildcard src/*.c) main.c \noutput : $(files)\n\tgcc -o output $(files)"
-        }
-      },
-      name:"C Make Project"
+        {
+          name: "makefile",
+          path: "/",
+          contents:
+            "files := $(wildcard src/*.c) main.c \noutput : $(files)\n\tgcc -o output $(files)",
+        },
+      ],
+      name: "C Make Project",
+    },
+    Cs: {
+      command: "dotnet new console",
+      files: undefined,
+      dirs: ["/src"],
+      name: "C# Console App",
+    },
+    Node: {
+      command: "npm init -y",
+      dirs: ["/src"],
+      files: [
+        {
+          name: "index.js",
+          path: "/",
+          contents: 'console.log("FileSnippets says hello!")',
+        },
+      ],
+      name: "Node.js project",
     },
   },
 };
