@@ -41,6 +41,6 @@ Initial release of FileSnippets
 
 Minor bugfix
 
-### 1.0.2
+### 1.0.0
 
 Added support for creating projects.
