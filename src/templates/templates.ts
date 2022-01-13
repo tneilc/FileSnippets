@@ -3,14 +3,14 @@
 export const data = {
   languages: {
     JavascriptCss: {
-      files: [".js", ".css"],
+      files: [".jsx", ".css"],
       import: 'import "./{0}.css";',
-      name: "Javascript - Css",
+      name: "React Component - Javascript",
     },
     TypescriptCss: {
-      files: [".ts", ".css"],
+      files: [".tsx", ".css"],
       import: 'import "./{0}.css";',
-      name: "Typescript - Css",
+      name: "React Component - Typescript",
     },
     Cpp: {
       files: [".cpp", ".h"],
